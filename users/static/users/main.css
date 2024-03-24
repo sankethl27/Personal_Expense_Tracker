@@ -1,0 +1,143 @@
+/* users/main.css */
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f8f9fa;
+}
+
+.content-section {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 50px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.border-bottom {
+  border-bottom: 2px solid #007bff;
+  padding-bottom: 10px;
+}
+
+.btn-outline-info {
+  color: #007bff;
+  background-color: transparent;
+  background-image: none;
+  border-color: #007bff;
+}
+
+.btn-outline-info:hover {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.border-top {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px solid #ccc;
+}
+
+.text-muted {
+  color: #6c757d;
+}
+
+.text-muted a {
+  color: #007bff;
+}
+
+.text-muted a:hover {
+  text-decoration: underline;
+}
+
+
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.content-section {
+    max-width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.border-bottom {
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Style the form fields */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border: 2px solid #007bff;
+}
+
+.btn-outline-info {
+    color: #007bff;
+    background-color: transparent;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-outline-info:hover {
+    color: #fff;
+    background-color: #007bff;
+}
+
+.border-top {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ccc;
+}
+
+.text-muted {
+    color: #6c757d;
+}
+
+.text-muted a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.text-muted a:hover {
+    text-decoration: underline;
+}
