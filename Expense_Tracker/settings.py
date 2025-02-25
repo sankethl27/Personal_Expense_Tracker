@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,8 +25,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-6uh*ef&_tjq($l0oa&fv*nl(^%o=m5)j2n)hwi3s^8=7pw#m9%'
-
+# SECRET_KEY = 'django-insecure-6uh*ef&_tjq($l0oa&fv*nl(^%o=m5)j2n)hwi3s^8=7pw#m9%'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+DEBUG = bool(os.environ.get("DEBUG", default=0)) 
+ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS","127.0.0.1").split(",")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -77,16 +83,31 @@ WSGI_APPLICATION = 'Expense_Tracker.wsgi.application'
 
 
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'expense_tracker',
+#         'USER': 'root',
+#         'PASSWORD': 'asdf1234',
+#         'HOST': 'personal_exp_tracker_image',
+#         'PORT': '3306',
+#     }
+# }
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'expense_tracker',
-        'USER': 'root',
-        'PASSWORD': 'asdf1234',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': os.getenv('DATABASE_NAME', 'expense_tracker'),
+        'USER': os.getenv('DATABASE_USERNAME', 'root'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
+        'HOST': os.getenv('DATABASE_HOST', 'mysql_db'),  # ✅ Use "db" instead of "localhost"
+        'PORT': os.getenv('DATABASE_PORT', '3306'),  # ✅ Default port
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
+
 
 
 

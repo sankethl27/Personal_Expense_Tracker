@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: django_app
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy  # ✅ Ensures MySQL is ready before Django starts
+    environment:
+      DJANGO_SECRET_KEY: "django-insecure-6uh*ef&_tjq($l0oa&fv*nl(^%o=m5)j2n)hwi3s^8=7pw#m9%"
+      DEBUG: "True"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
+      DATABASE_ENGINE: "django.db.backends.mysql"
+      DATABASE_NAME: "expense_tracker"
+      DATABASE_USERNAME: "root"
+      DATABASE_PASSWORD: "asdf1234"
+      DATABASE_HOST: "db"  # ✅ MySQL container name
+      DATABASE_PORT: "3306"  # ✅ Default MySQL port
+    volumes:
+      - .:/app
+      - pip_cache:/root/.cache/pip  # Cache pip dependencies
+
+  db:
+    image: mysql:latest
+    container_name: mysql_db
+    restart: always
+    ports:
+      - "3306:3306"  
+    environment:
+      MYSQL_DATABASE: "expense_tracker"
+      MYSQL_ROOT_PASSWORD: "asdf1234"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - mysql_config:/etc/mysql
+    healthcheck: 
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      timeout: 5s
+
+volumes:
+  mysql_data:
+  mysql_config:
+  pip_cache:
